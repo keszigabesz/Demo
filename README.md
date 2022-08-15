@@ -1,9 +1,11 @@
 # **Demo**
 My projects for demonstration
 ## **Tic-Tac-Toe**
-*HTML, CSS, JavaScript*
+*HTML, CSS, JavaScript*  
+Open index.html
 ## **Matching Game**
-*HTML, CSS, JavaScript*
+*HTML, CSS, JavaScript*  
+Open index.html
 ## **Game Of Thrones**
 *HTML, CSS, JavaScript*   
 To run the application open the index.html with Live Server in VSC
