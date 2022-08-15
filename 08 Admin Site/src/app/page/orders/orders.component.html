@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-info">
+            <h4 class="card-title mt-0">Orders</h4>
+          </div>
+          <button (click)="edit(0)" class="btn btn-success btn-block">
+            <i class="material-icons">add</i>
+            Create new order
+          </button>
+          <div class="form-group">
+            <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search..." />
+          </div>
+          <div class="input-group mb-3">
+            <select
+              [(ngModel)]="searchKey"
+              class="custom-select"
+            >
+              <option *ngFor="let column of columns" [value]="column.reference">{{column.message}}</option>
+            </select>
+            <input
+              [(ngModel)]="searchValue"
+              type="text"
+              class="form-control"
+              placeholder="Search in field..."
+            />
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-striped">
+                <thead class="">
+                  <tr>
+                    <th *ngFor="let column of columns" class="clickable-column"
+                      [class.table-active]="sort === column.reference" (click)="onChangeOrder(column.reference)">
+                      <ng-container *ngIf="sort === column.reference">
+                        <span class="fa" [class.fa-caret-down]="!descendingOrder"
+                          [class.fa-caret-up]="descendingOrder"></span>
+
+                      </ng-container>
+                      {{ column.message }}
+                    </th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="(list$ | async) as list">
+                <tr *ngFor="let item of list | sorter: sort:descendingOrder | filter:searchValue:searchKey | filterAll: phrase">
+                    <td *ngFor="let column of columns" [class.table-active]="sort === column.reference">{{ item[column.reference] }}</td>
+                    <td>
+                      <button (click)="edit(item.id)" type="button" class="btn btn-success btn-link">
+                        <i class="material-icons">edit</i>
+                        Edit
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button" (click)="delete(item)" class="btn btn-danger btn-link">
+                        <i class="material-icons">delete</i>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <ng-container *ngFor="let column of columns">
+                      <td class="font-weight-bold text-center h4" *ngIf="!column.reference.toLowerCase().includes('id'); else elseBlock">{{list | sum:column.reference}}</td>
+                      <ng-template #elseBlock><td></td></ng-template>
+                    </ng-container>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading-animation-colors [list$]="list$"></app-loading-animation-colors>

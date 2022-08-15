@@ -1,0 +1,75 @@
+<div class="row" *ngIf="editedObject">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4 class="card-title">Edit or Add Address</h4>
+      </div>
+      <div class="card-body">
+        <form #userForm="ngForm" (ngSubmit)="onSend(editedObject)">
+          <input type="hidden" name="id" [(ngModel)]="editedObject.id">
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i1ID">ZIP</label>
+            <input id="i1ID" class="form-control" type="number" name="zip" [(ngModel)]="editedObject.zip" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['zip']?.valid">
+              ZIP required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['zip']?.invalid">
+              ZIP OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i2ID">City</label>
+            <input id="i2ID" class="form-control" type="text" name="city" [(ngModel)]="editedObject.city"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+          </div>
+          <div class="validation validation-danger" [hidden]="userForm.controls['city']?.valid">
+            City required, only small and capital letters, minimum 2 charaters
+          </div>
+          <div class="validation validation-success" [hidden]="userForm.controls['city']?.invalid">
+            City OK
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i3ID">Country</label>
+            <input id="i3ID" class="form-control" type="text" name="country" [(ngModel)]="editedObject.country"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['country']?.valid">
+              Country required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['country']?.invalid">
+              Country OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i4ID">Street</label>
+            <input id="i4ID" class="form-control" type="text" name="street" [(ngModel)]="editedObject.street"
+              pattern="^([A-Űa-ű0-9]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['street']?.valid">
+              Street required, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['street']?.invalid">
+              Street OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i5ID">Notes</label>
+            <input id="i5ID" class="form-control" type="text" name="notes" [(ngModel)]="editedObject.notes"
+              pattern="^([A-Űa-ű0-9]){1,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['notes']?.valid">
+              Notes required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['notes']?.invalid">
+              Notes OK
+            </div>
+          </div>
+          <button [disabled]="!userForm.valid" type="submit" class="btn btn-success btn-link mr-2"> <i
+              class="material-icons">save</i>
+            Save</button>
+          <button routerLink="/addresses" class="btn btn-danger btn-link"> <i class="material-icons">not_interested</i>
+            Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading-edit [editedObject]="editedObject"></app-loading-edit>

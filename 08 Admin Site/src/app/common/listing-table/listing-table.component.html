@@ -1,0 +1,28 @@
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="">
+        <tr>
+          <th *ngFor="let key of keys">{{key}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of list | datarestructure">
+          <td *ngFor="let data of item">{{data}}</td>
+          <td>
+            <button type="button" class="btn btn-success btn-link">
+              <i class="material-icons">edit</i>
+              Edit
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger btn-link">
+              <i class="material-icons">delete</i>
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

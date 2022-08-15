@@ -1,0 +1,94 @@
+<div class="row" *ngIf="editedObject">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4 class="card-title">Edit or Add Product</h4>
+      </div>
+      <div class="card-body">
+        <form #userForm="ngForm" (ngSubmit)="onSend(editedObject)">
+          <input type="hidden" name="id" [(ngModel)]="editedObject.id">
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i1ID">Name</label>
+            <input id="i1ID" class="form-control" type="text" name="name" [(ngModel)]="editedObject.name"
+              pattern="^([A-Űa-ű0-9]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['name']?.valid">
+              Name required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['name']?.invalid">
+              Name OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i2ID">Type</label>
+            <input id="i2ID" class="form-control" type="text" name="type" [(ngModel)]="editedObject.type"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['type']?.valid">
+              Type required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['type']?.invalid">
+              Type OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i3ID">Category ID</label>
+            <input id="i3ID" class="form-control" type="number" name="catID" [(ngModel)]="editedObject.catID" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['catID']?.valid">
+              Category ID required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['catID']?.invalid">
+              Category ID OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i4ID">Description</label>
+            <input id="i4ID" class="form-control" type="text" name="description" [(ngModel)]="editedObject.description"
+              pattern="^([A-Űa-ű0-9]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['description']?.valid">
+              Description required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['description']?.invalid">
+              Description OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i5ID">Price</label>
+            <input id="i5ID" class="form-control" type="number" name="price" [(ngModel)]="editedObject.price" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['price']?.valid">
+              Price required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['price']?.invalid">
+              Price OK
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input id="i6ID" class="form-check-input" type="checkbox" name="featured"
+                    [(ngModel)]="editedObject.featured">
+                </div>
+              </div>
+              <label class="bmd-label-floating" for="i6ID" class="form-check-label">Featured</label>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input id="i7ID" class="form-check-input" type="checkbox" name="active"
+                    [(ngModel)]="editedObject.active">
+                </div>
+              </div>
+              <label class="bmd-label-floating" for="i7ID" class="form-check-label">Active</label>
+            </div>
+          </div>
+          <button [disabled]="!userForm.valid" type="submit" class="btn btn-success btn-link mr-2"> <i
+              class="material-icons">save</i>
+            Save</button>
+          <button routerLink="/products" class="btn btn-danger btn-link"> <i class="material-icons">not_interested</i>
+            Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading-edit [editedObject]="editedObject"></app-loading-edit>

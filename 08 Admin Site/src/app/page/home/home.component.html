@@ -1,0 +1,217 @@
+<!-- Ez az alkalmazás kezdőoldala. Itt alapvetően áttekintő nézet jelenik meg a webshop állapotáról.
+Megjelenített adatok:
+
+Aktív termékek száma.
+Aktív vásárlók száma.
+Még nem fizetett rendelések száma.
+Még nem fizetett számlák összege.
+Opcionális: ugyanezen adatok grafikonon történő megjelenítése.
+Például a rendelések grafikon külön oszlopokban mutatja a különböző státuszú rendelések számát,
+vagy a számlák összegét láthatjuk státuszuk szerint.
+
+https://nettuts.hu/jms/newoctal/address
+https://nettuts.hu/jms/newoctal/bill
+https://nettuts.hu/jms/newoctal/category
+https://nettuts.hu/jms/newoctal/customer
+https://nettuts.hu/jms/newoctal/order
+https://nettuts.hu/jms/newoctal/product
+-->
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+CoshoppingCartCheckOut
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">inventory_2</i>
+            </div>
+            <p class="card-category">Aktív termékek száma</p>
+            <h3 class="card-title">{{ activeProducts$ | async }}
+              <small>db</small>
+            </h3>
+          </div>
+          <!-- <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger">warning</i>
+              <a href="javascript:;">Get More Space...</a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">people</i>
+            </div>
+            <p class="card-category">Aktív vásárlók száma</p>
+            <h3 class="card-title">{{ activeCustomers$ | async }}
+              <small>db</small>
+            </h3>
+          </div>
+          <!-- <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">date_range</i> Last 24 Hours
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">quiz</i>
+            </div>
+            <p class="card-category">Még nem fizetett rendelések száma</p>
+            <h3 class="card-title">{{ notPaidOrders$ | async }}
+              <small>db</small>
+            </h3>
+          </div>
+          <!-- <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">local_offer</i> Tracked from Github
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">functions</i>
+            </div>
+            <p class="card-category">Még nem fizetett számlák összege</p>
+            <h3 class="card-title">{{ sumNotPaidBills$ | async }}
+              <small>Ft</small>
+            </h3>
+          </div>
+          <!-- <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">update</i> Just Updated
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <svg height="48" width="50" viewBox="0 0 50 50">
+                <circle r="24" cx="25" cy="25" fill="white" />
+                <circle r="12" cx="25" cy="25" fill="transparent" stroke="tomato" stroke-width="24"
+                  [attr.stroke-dasharray]="((activeProductsPercentage$ | async)!  * 3.1415 * 24) "
+                  transform="rotate(-90) translate(-50)" />
+              </svg>
+            </div>
+            <p class="card-category">Termék statisztika</p>
+            <div class="card-footer">
+              <div class="stats">
+                Piros: aktív termékek
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                Fehér: nem aktív termékek
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <svg height="48" width="50" viewBox="0 0 50 50">
+                <circle r="24" cx="25" cy="25" fill="white" />
+                <circle r="12" cx="25" cy="25" fill="transparent" stroke="green" stroke-width="24"
+                  [attr.stroke-dasharray]="((activeCustomersPercentage$ | async)!  * 3.1415 * 24) "
+                  transform="rotate(-90) translate(-50)" />
+              </svg>
+            </div>
+            <p class="card-category">Felhasználói statisztika</p>
+            <div class="card-footer">
+              <div class="stats">
+                Zöld: aktív felhasználók
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                Fehér: nem aktív felhasználók
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon">
+              <svg height="48" width="50" viewBox="0 0 50 50">
+                <circle r="24" cx="25" cy="25" fill="white" />
+                <circle r="12" cx="25" cy="25" fill="transparent" stroke="red" stroke-width="24"
+                  [attr.stroke-dasharray]="orderChartData"
+                  transform="rotate(-90) translate(-50)" />
+              </svg>
+            </div>
+            <p class="card-category">Rendelés statisztika</p>
+            <div class="card-footer">
+              <div class="stats">
+                Piros: nem fizetett rendelések
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                Fehér: fizetett rendelések
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <svg height="48" width="50" viewBox="0 0 50 50">
+                <circle r="24" cx="25" cy="25" fill="white" />
+                <circle r="12" cx="25" cy="25" fill="transparent" stroke="blue" stroke-width="24"
+                  [attr.stroke-dasharray]="billChartData"
+                  transform="rotate(-90) translate(-50)" />
+              </svg>
+            </div>
+            <p class="card-category">Számla statisztika</p>
+            <div class="card-footer">
+              <div class="stats">
+                Kék: nem fizetett számlák
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                Fehér: fizetett számlák
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

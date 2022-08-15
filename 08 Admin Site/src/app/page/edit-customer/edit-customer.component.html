@@ -1,0 +1,122 @@
+<div class="row" *ngIf="editedObject">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4 class="card-title">Edit or Add Customer</h4>
+      </div>
+      <div class="card-body">
+        <form #userForm="ngForm" (ngSubmit)="onSend(editedObject)">
+          <input type="hidden" name="id" [(ngModel)]="editedObject.id">
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i1ID">First name</label>
+            <input id="i1ID" class="form-control" type="text" name="firstName" [(ngModel)]="editedObject.firstName"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['firstName']?.valid">
+              First name required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['firstName']?.invalid">
+              First name OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i2ID">Last name</label>
+            <input id="i2ID" class="form-control" type="text" name="lastName" [(ngModel)]="editedObject.lastName"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['lastName']?.valid">
+              Last name required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['lastName']?.invalid">
+              Last name OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="i3ID">Email</label>
+            <input id="i3ID" class="form-control" type="email" name="email" [(ngModel)]="editedObject.email"
+              [pattern]="REGEXP_EMAIL_VALIDATOR" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['email']?.valid">
+              Email required, valid email format: something@something.something
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['email']?.invalid">
+              Email OK
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input id="i4ID" class="form-check-input" type="checkbox" name="active"
+                    [(ngModel)]="editedObject.active">
+                </div>
+              </div>
+              <label class="bmd-label-floating" for="i4ID" class="form-check-label">Active</label>
+            </div>
+          </div>
+          <input type="hidden" name="address_id" [(ngModel)]="editedObject.address.id">
+          <div class="form-group">
+            <label class="bmd-label-floating" for="_i1ID">ZIP</label>
+            <input id="_i1ID" class="form-control" type="number" name="zip" [(ngModel)]="editedObject.address.zip"
+              required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['zip']?.valid">
+              ZIP required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['zip']?.invalid">
+              ZIP OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="_i2ID">City</label>
+            <input id="_i2ID" class="form-control" type="text" name="city" [(ngModel)]="editedObject.address.city"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['city']?.valid">
+              City required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['city']?.invalid">
+              City OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="_i3ID">Country</label>
+            <input id="_i3ID" class="form-control" type="text" name="country" [(ngModel)]="editedObject.address.country"
+              pattern="^([A-Űa-ű]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['country']?.valid">
+              Country required, only small and capital letters, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['country']?.invalid">
+              Country OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="_i4ID">Street</label>
+            <input id="_i4ID" class="form-control" type="text" name="street" [(ngModel)]="editedObject.address.street"
+              pattern="^([A-Űa-ű0-9]){2,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['street']?.valid">
+              Street required, minimum 2 charaters
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['street']?.invalid">
+              Street OK
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="bmd-label-floating" for="_i5ID">Notes</label>
+            <input id="_i5ID" class="form-control" type="text" name="notes" [(ngModel)]="editedObject.address.notes"
+              pattern="^([A-Űa-ű0-9]){1,}.*$" required>
+            <div class="validation validation-danger" [hidden]="userForm.controls['notes']?.valid">
+              Notes required
+            </div>
+            <div class="validation validation-success" [hidden]="userForm.controls['notes']?.invalid">
+              Notes OK
+            </div>
+          </div>
+          <button [disabled]="!userForm.valid" type="submit" class="btn btn-success btn-link mr-2"> <i
+              class="material-icons">save</i>
+            Save</button>
+          <button routerLink="/customers" class="btn btn-danger btn-link"> <i class="material-icons">not_interested</i>
+            Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-loading-edit [editedObject]="editedObject"></app-loading-edit>
