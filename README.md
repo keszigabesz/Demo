@@ -32,6 +32,7 @@ To run the application:
 To run the application:    
 1. Install dependencies (`npm i`)
 2. Run: `ng serve -o`
-** **Medical laboratory Site**
+## **Medical laboratory Site**
 *Fullstac API project*  
-Backend: Express application and jest tests, frontend: angular project.
+Backend: Express application and jest tests, frontend: angular project.  
+Find full installation guide in the Documentation.md file.
