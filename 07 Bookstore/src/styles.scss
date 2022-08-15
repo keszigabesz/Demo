@@ -1,0 +1,7 @@
+@use "colors";
+
+.btn-primary {
+  color: colors.$dark!important;
+  background-color: colors.$secondary!important;
+  border-color: colors.$primary!important;
+}
