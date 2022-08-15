@@ -1,0 +1,7 @@
+{
+    "database": {
+        "user": "KesziGabesz",
+        "pass": "x9S5lsiUy9cOnXSA",
+        "host": "clustervizsgaremek.dezhdzb.mongodb.net/?retryWrites=true&w=majority"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "database": {
+        "user": "KesziGabesz",
+        "pass": "keszigabesz",
+        "host": "cluster0.ekqzrzk.mongodb.net/?retryWrites=true&w=majority"
+    }
+}
