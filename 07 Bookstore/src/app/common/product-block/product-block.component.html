@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-5">
+
+    <div class="products" *ngFor="let product of products">
+      <app-product-card [product]="product" textLength="150" featured=true></app-product-card>
+    </div>
+  </div>
+</div>

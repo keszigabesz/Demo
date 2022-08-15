@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h2>Új termék hozzáadása</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="newProductGroup" class="my-3">
+      <div class="form-group">
+        <label for="catId">Kategória azonosító</label>
+        <select formControlName="catId" name="catId" id="catId" class="form-control">
+          <option *ngFor="let item of categories" [value]="item.id" [selected]="item.id == product.catId">
+            {{ item.name }}
+          </option>
+        </select>
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['catId']?.pristine || newProductGroup.controls['catId']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="author">Szerző</label>
+        <input formControlName="author" class="form-control" type="text" name="author" id="author">
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['author']?.pristine || newProductGroup.controls['author']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="title">Cím</label>
+        <input formControlName="title" class="form-control" type="text" name="title" id="title">
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['title']?.pristine || newProductGroup.controls['title']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="description">Leírás</label>
+        <textarea formControlName="description" class="form-control" name="description" id="description"></textarea>
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['description']?.pristine || newProductGroup.controls['description']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="image">Borító</label>
+        <input formControlName="image" class="form-control" type="text" name="image" id="image" value="assets/covers/">
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['image']?.pristine || newProductGroup.controls['image']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="price">Ár</label>
+        <input formControlName="price" class="form-control" type="text" name="price" id="price">
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['price']?.pristine || newProductGroup.controls['price']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="stock">Készlet</label>
+        <input formControlName="stock" class="form-control" type="text" name="stock" id="stock">
+        <!-- <div class="error-message"
+          [hidden]="newProductGroup.controls['stock']?.pristine || newProductGroup.controls['stock']?.valid">
+          ...
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="featured">Kiemelt</label>
+        <select formControlName="featured" class="form-control" name="featured" id="featured">
+          <option>true</option>
+          <option>false</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="active">Aktív</label>
+        <select formControlName="active" class="form-control" name="active" id="active">
+          <option>true</option>
+          <option>false</option>
+        </select>
+      </div>
+      <button [disabled]="newProductGroup.invalid" class="btn btn-success btn-block" type="submit">Létrehoz</button>
+      <button class="btn btn-danger btn-block" routerLink="/admin">Mégse</button>
+    </form>
+  </div>
+</div>

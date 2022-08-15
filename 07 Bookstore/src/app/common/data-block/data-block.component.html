@@ -1,0 +1,105 @@
+<tr class="row data-main">
+  <td class="col-md-1">
+    <input
+      readonly
+      class="form-control"
+      [(ngModel)]="product.id"
+      name="id"
+      type="text"
+    />
+  </td>
+  <td class="col-md-1">
+    <select
+      name="catId"
+      class="form-control"
+      [disabled] = "!editable"
+    >
+    <option
+      *ngFor="let item of categories"
+      [value]="item.id"
+      [selected]="item.id == product.catId"
+    >
+      {{ item.name }}
+    </option>
+    </select>
+  </td>
+  <td class="col-md-2">
+    <input
+      [(ngModel)]="product.author"
+      name="author"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+  <td class="col-md-4">
+    <input
+      [(ngModel)]="product.title"
+      name="title"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+  <td class="col-md-1">
+    <input
+      [(ngModel)]="product.price"
+      name="price"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+  <td class="col-md-1">
+    <input
+      [(ngModel)]="product.stock"
+      name="stock"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+  <td class="col-md-1">
+    <input
+      [(ngModel)]="product.featured"
+      name="featured"
+      type="checkbox"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+</tr>
+
+<tr class="row data-extra">
+  <td class="col-md-7 offset-md-1">
+    <textarea
+      [(ngModel)]="product.description"
+      name="description"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    ></textarea>
+  </td>
+  <td class="col-md-2">
+    <app-button-block
+      [product]="product"
+      (updated)="onUpdate($event)"
+      (deleted)="onDelete($event)"
+    ></app-button-block>
+  </td>
+  <td class="col-md-6 offset-2">
+    <input
+      [(ngModel)]="product.image"
+      name="image"
+      type="text"
+      class="form-control"
+      [readonly] = "!editable"
+    />
+  </td>
+</tr>
+
+<tr *ngIf="isAlertVisible">
+  <td class="col-md-6 alert alert-danger alert-dismissible" role="alert">
+    {{ alertMessage }}
+  </td>
+</tr>

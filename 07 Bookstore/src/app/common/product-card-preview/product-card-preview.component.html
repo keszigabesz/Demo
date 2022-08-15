@@ -1,0 +1,6 @@
+<h2>Termékkártya előnézet</h2>
+<div *ngIf="product$ | async as product" class="preview">
+  <button class="btn btn-info btn-block my-5" routerLink="/admin"><i class="fa fa-book" aria-hidden="true"></i>
+    Előnézet bezárása</button>
+  <app-product-card [product]="product"></app-product-card>
+</div>

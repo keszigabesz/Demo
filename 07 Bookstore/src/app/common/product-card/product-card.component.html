@@ -1,0 +1,19 @@
+<div class="card" [class.featured]="featured">
+  <img [attr.src]="product.image" class="card-img-top" [attr.alt]="product.title" />
+  <div class="card-body">
+    <h5 class="card-author">{{ product.author }}</h5>
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">
+      Leírás: {{ product.description | slice: 0:textLength }}...
+    </p>
+  </div>
+  <div class="card-footer">
+    <p>
+      <span class="card-text float-left mt-2 mb-3">
+        <strong>Ár: {{ product.price | currency: "HUF ":"symbol":"2.0-0" }}</strong>
+      </span>
+      <span class="card-text float-right mt-2 mb-3 mr-2">{{ product.stock }} db</span>
+    </p>
+    <a href="#" class="btn" [class.btn-primary]="!featured" [class.btn-secondary]="featured">{{ buttonText }}</a>
+  </div>
+</div>

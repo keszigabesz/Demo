@@ -1,0 +1,16 @@
+@use "../../../colors.scss";
+
+.content {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.header {
+  background: linear-gradient(to right, colors.$light, colors.$white);
+  color: black;
+  width: 100%;
+  h4 {
+    padding: 1.5em;
+    text-shadow: black;
+  }
+}

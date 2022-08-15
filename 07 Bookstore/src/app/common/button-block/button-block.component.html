@@ -1,0 +1,9 @@
+<button class="btn btn-info m-1" [routerLink]="['/', 'preview', product.id]">
+  <i class="fa fa-eye"></i>
+</button>
+<button (click)="onSave(product)" class="btn btn-success m-1">
+  <i class="fa fa-save"></i>
+</button>
+<button (click)="onDelete(product)" class="btn btn-danger m-1">
+  <i class="fa fa-trash"></i>
+</button>

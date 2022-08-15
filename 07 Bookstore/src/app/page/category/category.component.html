@@ -1,0 +1,20 @@
+<div class="content">
+  <div class="row featured">
+    <div class="category-header">
+      <!--Az egyszerűség kedvéért mondjuk azt, hogy a ? miatt nem értékelődik a teljes kifejezés addig ameddig zárójeles kifejezés null -->
+      <h4>{{ (currentCategory$ | async)?.name }} kategória</h4>
+    </div>
+    <span>
+      <h5>Kiemelt ajánlataink</h5>
+    </span>
+    <app-product-block
+      [products]="products$ | async | random | filter: categoryId:'catId' | firstFew: 5"
+    ></app-product-block>
+  </div>
+
+  <div class="row productlist">
+    <app-product-list
+      [products]="products$ | async | filter: categoryId:'catId'"
+    ></app-product-list>
+  </div>
+</div>

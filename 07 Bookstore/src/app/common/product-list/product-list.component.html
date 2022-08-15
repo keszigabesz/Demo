@@ -1,0 +1,66 @@
+<div class="search-field">
+  <div class="caption">
+    <h4>Termékkereső</h4>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="sortFilterKeySelect">Keresés</label>
+    </div>
+    <select
+      [(ngModel)]="filterKey"
+      class="custom-select"
+      id="sortFilterKeySelect"
+    >
+      <option value="title">Név</option>
+      <option value="author">Szerző</option>
+      <option value="description">Leírás</option>
+    </select>
+    <div class="input-group-prepend">
+      <label class="input-group-text">mezőben:</label>
+    </div>
+    <input
+      [(ngModel)]="phrase"
+      type="text"
+      class="form-control"
+      name="search-field"
+    />
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="sortGroupSelect">Sorrend</label>
+    </div>
+    <select [(ngModel)]="sort" class="custom-select" id="sortGroupSelect">
+      <option value="id">Válassz</option>
+      <option value="title">Név</option>
+      <option value="author">Szerző</option>
+      <option value="price">Ár</option>
+      <option value="featured">Kiemelt</option>
+    </select>
+    <button
+      class="btn btn-outline-dark rounded-0"
+      (click)="onOrderDirectionChange()"
+    >
+      <i
+        class="fa"
+        [class.fa-arrow-down]="!descendingOrder"
+        [class.fa-arrow-up]="descendingOrder"
+        aria-hidden="true"
+      ></i>
+    </button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-5">
+    <div
+      class="products"
+      *ngFor="
+        let product of products
+          | filter: phrase:filterKey
+          | sorter: sort:descendingOrder
+      "
+    >
+      <app-product-card [product]="product" textLength="150"></app-product-card>
+    </div>
+  </div>
+</div>

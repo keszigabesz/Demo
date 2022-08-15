@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="row">
+    <div class="header">
+      <h4>
+        Üdvözöljük a <strong>{{ configService.appName }}</strong> webáruházában!
+      </h4>
+    </div>
+    <div class="featured">
+      <span>
+        <h5>Kiemelt ajánlataink</h5>
+      </span>
+      <app-product-block
+        [products]="products$ | async | random | featured | firstFew: 5"
+      ></app-product-block>
+    </div>
+    <div class="onsale">
+      <span>
+        <h5>
+          Akciós könyvek
+          <span class="badge badge-success ml-3">{{ this.discount }}%</span>
+        </h5>
+      </span>
+      <app-product-block
+        [products]="products$ | async | random | firstFew: 5"
+      ></app-product-block>
+    </div>
+  </div>
+</div>

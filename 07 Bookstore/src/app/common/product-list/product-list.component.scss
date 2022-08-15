@@ -1,0 +1,17 @@
+.search-field {
+  padding-left: 1em;
+  padding-right: 1em;
+  .caption {
+    margin-bottom: 1em;
+  }
+}
+
+.products {
+  padding: 0.4em;
+}
+
+@media screen and (min-width: 576px) {
+  .search-field {
+    padding: 0.5em;
+  }
+}

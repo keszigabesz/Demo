@@ -1,0 +1,47 @@
+@use "../../../colors";
+
+.products{
+  width: 100%;
+}
+
+.card {
+  min-height: 100%;
+  background-color: rgba(255,255,255, 0.7)!important;
+
+  &-author {
+    font-variant: small-caps;
+    font-size: 1em;
+  }
+}
+
+.card::after {
+  padding-bottom: 4em!important;
+  margin-bottom: 4em;
+}
+
+.card.featured {
+  border: 0!important;
+  padding-bottom: 0em!important;
+  .card-footer {
+    border-top: 0!important;
+  }
+}
+
+.card .card-img-top {
+  max-height: 19em;
+  object-fit: contain;
+  object-position: top;
+}
+
+.card .card-text {
+  font-size: 0.9em;
+  text-align: justify;
+}
+
+@media screen and (max-width: 575.9px) {
+  .card .card-img-top {
+    object-fit: initial;
+    max-height: initial;
+    padding: 1em;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row input-group mb-4">
+      <div class="col-1 input-group-prepend">
+        <label class="input-group-text" for="sortFilterKeySelect">Keresés</label>
+      </div>
+      <div class="col-2">
+        <select [(ngModel)]="filterKey" class="custom-select" id="sortFilterKeySelect">
+          <option value="author">Szerző</option>
+          <option value="title">Cím</option>
+          <option value="description">Leírás</option>
+        </select>
+      </div>
+      <div class="col-1 input-group-prepend">
+        <label class="input-group-text">mezőben:</label>
+      </div>
+      <div class="col-8">
+        <input [(ngModel)]="phrase" type="text" class="form-control" name="search-field" />
+      </div>
+    </div>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr class="row">
+            <!-- <th class="col-1" *ngFor="let key of keys"></th> -->
+            <th class="col-md-1">id</th>
+            <th class="col-md-1">catId</th>
+            <th class="col-md-2">szerző</th>
+            <th class="col-md-4">cím</th>
+            <th class="col-md-1">ár</th>
+            <th class="col-md-1">db</th>
+            <th class="col-md-1">kiemelt</th>
+          </tr>
+        </thead>
+        <tbody class="row">
+          <div class="products" *ngFor="let product of products$ | async | filter: phrase:filterKey">
+            <app-data-block [product]="product" [keys]="keys" (itemDeleted)="onItemDelete($event)"></app-data-block>
+          </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
