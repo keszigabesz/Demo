@@ -5,5 +5,5 @@ My projects for demonstration
 ## Matching Game
 *HTML, CSS, JavaScript*
 ## Game Of Thrones
-*HTML, CSS, JavaScript*
+*HTML, CSS, JavaScript*   
 To run the application opne the index.html with Live Server in VSC
