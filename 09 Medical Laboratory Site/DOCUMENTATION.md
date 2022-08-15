@@ -7,7 +7,7 @@ The purpose of the Application is to record, maintain and manage the Micro-Lab m
 
 ## *Installation Instructions*
 
-### **Required Applications and Softwares** (telepítés az adott sorrendben történjen)
+### **Required Applications and Softwares**
 1. Git: Download and install the Git application. Choose the appropriate installer for your computer's operating system (Windows, Mac, Linux): https://git-scm.com/downloads
 2. Node JS: Download and install the latest LTS version: https://nodejs.org/en/
 3. Angular framework: In the command line issue the command: `npm i -g @angular/cli`
