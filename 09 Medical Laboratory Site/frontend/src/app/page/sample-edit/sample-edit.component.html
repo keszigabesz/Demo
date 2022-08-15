@@ -1,0 +1,151 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4
+                *ngIf="sample$ | async"
+                class="card-title"
+              >Minta szerkesztése</h4>
+              <h4
+                *ngIf="!(sample$ | async)"
+                class="card-title"
+              >Új minta hozzáadása</h4>
+            </div>
+            <div class="card-body">
+              <form
+                #sampleForm="ngForm"
+                (ngSubmit)="onSend(sample)"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  [(ngModel)]="sample._id"
+                >
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="type"
+                  >Típus <span class="validation-danger">*</span></label>
+                  <select
+                    class="form-control"
+                    id="type"
+                    name="type"
+                    [(ngModel)]="sample.type"
+                    required
+                  >
+                    <option
+                      value=""
+                      disabled
+                      selected
+                      hidden
+                    >Kérjük válasszon</option>
+                    <option *ngFor="let type of sampleTypes">{{ type }}</option>
+                  </select>
+                </div>
+                <div
+                  class="validation validation-danger mb-3"
+                  [hidden]="sampleForm.controls['type']?.valid"
+                >
+                  A minta típusát kötelező kitölteni
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="patient_name"
+                  >Beteg neve <span class="validation-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    id="patient_name"
+                    name="patient_name"
+                    [(ngModel)]="sample.patient_name"
+                    required
+                    [value]="patientSearch"
+                    ngxTypeahead
+                    [taList]="patientNames | async"
+                    (taSelected)="patientSelect($event)"
+                  >
+                </div>
+                <div
+                  class="validation validation-danger mb-3"
+                  [hidden]="sampleForm.controls['patient_name']?.valid"
+                >
+                  A beteg nevét kötelező kitölteni. Ha nem találja a listában, akkor először vegye fel a betegek közé.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="physician_name"
+                  >Beküldő orvos <span class="validation-danger">*</span></label>
+
+                  <input
+                    class="form-control"
+                    id="physician_name"
+                    name="physician_name"
+                    [(ngModel)]="sample.physician_name"
+                    required
+                    [value]="physicianSearch"
+                    ngxTypeahead
+                    [taList]="physicianNames | async"
+                    (taSelected)="physicianSelect($event)"
+                  >
+                </div>
+                <div
+                  class="validation validation-danger mb-3"
+                  [hidden]="sampleForm.controls['physician_name']?.valid"
+                >
+                  A orvos nevét kötelező kitölteni. Ha nem találja a listában, akkor először vegye fel az orvosok közé.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="sampling_date"
+                  >Mintavétel ideje <span class="validation-danger">*</span></label>
+                  <input
+                    id="sampling_date"
+                    class="form-control"
+                    type="date"
+                    name="sampling_date"
+                    [(ngModel)]="sample.sampling_date"
+                    pattern=""
+                    required
+                  >
+                </div>
+                <div
+                  class="validation validation-danger mb-3"
+                  [hidden]="sampleForm.controls['sampling_date']?.valid"
+                >
+                  A mintavétel idejét kötelező kitölteni.
+                </div>
+
+                <div class="validation-main"><span class="validation-danger">*</span> Kötelező kitölteni</div>
+                <button
+                  [disabled]="!sampleForm.valid"
+                  type="submit"
+                  class="btn btn-success btn-link mr-2"
+                > <i class="material-icons">save</i>
+                  Mentés</button>
+                <button
+                  routerLink="/sample"
+                  class="btn btn-danger btn-link"
+                > <i class="material-icons">not_interested</i>
+                  Mégse</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

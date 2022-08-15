@@ -1,0 +1,129 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4
+                *ngIf="reagent$ | async"
+                class="card-title"
+              >Reagens szerkesztése</h4>
+              <h4
+                *ngIf="!(reagent$ | async)"
+                class="card-title"
+              >Új reagens hozzáadása</h4>
+            </div>
+            <div class="card-body">
+              <form
+                #reagentForm="ngForm"
+                (ngSubmit)="onSend(reagent)"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  [(ngModel)]="reagent._id"
+                >
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="name"
+                  >Név <span class="validation-danger">*</span></label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    [(ngModel)]="reagent.name"
+                    pattern="^([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[A-Űa-ű \-0-9]{1,})$"
+                    required
+                    autofocus
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="reagentForm.controls['name']?.valid">
+                  A név nagybetűvel kezdődik és legalább két karakter hosszú. Kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="manufacturer"
+                  >Gyártó <span class="validation-danger">*</span></label>
+                  <input
+                    id="manufacturer"
+                    class="form-control"
+                    type="text"
+                    name="manufacturer"
+                    [(ngModel)]="reagent.manufacturer"
+                    pattern="^([A-ZÖÜÓŐÚÉÁÍ]{1,1}[A-Űa-ű \-]{1,})$"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="reagentForm.controls['manufacturer']?.valid">
+                  A gyártó nagybetűvel kezdődik és legalább két karakter hosszú. Kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="price"
+                  >Ár <span class="validation-danger">*</span></label>
+                  <input
+                    id="price"
+                    class="form-control"
+                    type="number"
+                    name="price"
+                    [(ngModel)]="reagent.price"
+                    pattern=""
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="reagentForm.controls['price']?.valid">
+                  Az árat kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="stock"
+                  >Készlet <span class="validation-danger">*</span></label>
+                  <input
+                    id="stock"
+                    class="form-control"
+                    type="number"
+                    name="stock"
+                    [(ngModel)]="reagent.stock"
+                    pattern=""
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="reagentForm.controls['stock']?.valid">
+                  A készletet kötelező kitölteni.
+                </div>
+
+                <div class="validation-main"><span class="validation-danger">*</span> Kötelező kitölteni</div>
+                <button
+                  [disabled]="!reagentForm.valid"
+                  type="submit"
+                  class="btn btn-success btn-link mr-2"
+                > <i class="material-icons">save</i>
+                  Mentés</button>
+                <button
+                  routerLink="/reagent"
+                  class="btn btn-danger btn-link"
+                > <i class="material-icons">not_interested</i>
+                  Mégse</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

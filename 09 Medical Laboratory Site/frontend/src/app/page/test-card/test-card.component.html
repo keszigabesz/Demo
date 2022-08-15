@@ -1,0 +1,42 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+ <div class="content">
+    <div class="container-fluid">
+      <app-header [title]="title" [text]="text"></app-header>
+
+      <div class="col-6">
+        <input
+          [(ngModel)]="phrase"
+          type="text"
+          class="form-control"
+          placeholder="Keresés a vizsgálatok között...."
+        >
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-5" *ngFor="let test of list$ | async | filter:phrase:filterKey">
+        <div
+          class="card h-100">
+          <div class="card-header card-header-info">
+            <h4 class="card-title">{{test.name}}</h4>
+          </div>
+          <div class="card-body">
+            <p class="mt-1">
+              {{test.description}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="text-warning h5 font-weight-bold">Ár: {{test.price}} {{currency}}</p>
+
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+ </div>
+ <app-footer></app-footer>
+</div>

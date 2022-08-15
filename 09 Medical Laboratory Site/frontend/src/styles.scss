@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+@use './colors';
+@use './mixins';
+@import '../node_modules/ngx-toastr/toastr';
+
+
+
+th.clickable-column {
+  cursor: pointer;
+}
+
+.validation {
+  font-style: italic;
+  font-size: 90%;
+
+  &-danger {
+    color: colors.$red;
+  }
+  &-main {
+    color: colors.$main;
+  }
+}
+
+.icon-red {
+  color: colors.$red;
+}
+
+
+#loader {
+  @include mixins.loader-style(0,175px, 0, auto, absolute, 0, 100px, 175px);
+
+  & .dot {
+    @include mixins.loader-style(0,100%, 0, auto, absolute, 0, 0, 87.5px);
+
+    &::before {
+      border-radius: 100%;
+      content: "";
+      height: 87.5px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: scale(0);
+      width: 87.5px;
+    }
+
+    &:nth-child(7n+1) {
+      @include mixins.transform-rotate(45deg);
+      @include mixins.before-animation(0.1s);
+    }
+
+    &:nth-child(7n+2) {
+      @include mixins.transform-rotate(90deg);
+      @include mixins.before-animation(0.2s);
+    }
+
+    &:nth-child(7n+3) {
+      @include mixins.transform-rotate(135deg);
+      @include mixins.before-animation(0.3s);
+    }
+
+    &:nth-child(7n+4) {
+      @include mixins.transform-rotate(180deg);
+      @include mixins.before-animation(0.4s);
+    }
+
+    &:nth-child(7n+5) {
+      @include mixins.transform-rotate(225deg);
+      @include mixins.before-animation(0.5s);
+    }
+
+    &:nth-child(7n+6) {
+      @include mixins.transform-rotate(270deg);
+      @include mixins.before-animation(0.6s);
+    }
+
+    &:nth-child(7n+7) {
+      @include mixins.transform-rotate(315deg);
+      @include mixins.before-animation(0.7s);
+    }
+
+
+    &:nth-child(7n+8) {
+      @include mixins.transform-rotate(360deg);
+      @include mixins.before-animation(0.8s);
+    }
+  }
+
+  & .loading {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    bottom: -40px;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 180px;
+  }
+}
+
+@keyframes load {
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.ta-results.list-group{
+  max-width: 400px;
+  overflow: auto;
+  max-height: 75vh;
+  background-color: colors.$main;
+}
+
+.ta-item {
+  color: white;
+}

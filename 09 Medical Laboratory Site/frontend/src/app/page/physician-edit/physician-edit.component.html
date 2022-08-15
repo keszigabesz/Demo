@@ -1,0 +1,116 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4
+                *ngIf="physician$ | async"
+                class="card-title"
+              >Orvos szerkesztése</h4>
+              <h4
+                *ngIf="!(physician$ | async)"
+                class="card-title"
+              >Új orvos hozzáadása</h4>
+            </div>
+            <div class="card-body">
+              <form
+                #physicianForm="ngForm"
+                (ngSubmit)="onSend(physician)"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  [(ngModel)]="physician._id"
+                >
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="name"
+                  >Név <span class="validation-danger">*</span></label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    [(ngModel)]="physician.name"
+                    pattern="^([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,}) ([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,})$"
+                    required
+                    autofocus
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="physicianForm.controls['name']?.valid">
+                  Vezeték- és keresztnév szóközzel elválasztva, mindkettő nagybetűvel kezdődik. Betűkön kívül más karakter nem megengedett. Kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="reg_number"
+                  >Pecsétszám <span class="validation-danger">*</span></label>
+                  <input
+                    id="reg_number"
+                    class="form-control"
+                    type="number"
+                    name="reg_number"
+                    [(ngModel)]="physician.reg_number"
+                    pattern="^([1-9]{1,1}[0-9]{4,4})$"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="physicianForm.controls['reg_number']?.valid">
+                  A pecsétszám öt számjegyből áll, az első szám nem lehet nulla. Kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="city"
+                  >Település <span class="validation-danger">*</span></label>
+                  <input
+                    id="city"
+                    class="form-control"
+                    type="text"
+                    name="city"
+                    [(ngModel)]="physician.city"
+                    pattern="^([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű -]{1,})"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="physicianForm.controls['city']?.valid">
+                  A településnek nagybetűvel kell kezdődnie, és legalább két karakter hosszúnak kell lennie. Kötelező kitölteni.
+                </div>
+
+                <div class="validation-main"><span class="validation-danger">*</span> Kötelező kitölteni</div>
+                <button
+                  [disabled]="!physicianForm.valid"
+                  type="submit"
+                  class="btn btn-success btn-link mr-2"
+                > <i class="material-icons">save</i>
+                  Mentés</button>
+                <button
+                  routerLink="/physician"
+                  class="btn btn-danger btn-link"
+                > <i class="material-icons">not_interested</i>
+                  Mégse</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+
+
+
+

@@ -1,0 +1,129 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4
+                *ngIf="patient$ | async"
+                class="card-title"
+              >Beteg szerkesztése</h4>
+              <h4
+                *ngIf="!(patient$ | async)"
+                class="card-title"
+              >Új beteg hozzáadása</h4>
+            </div>
+            <div class="card-body">
+              <form
+                #patientForm="ngForm"
+                (ngSubmit)="onSend(patient)"
+              >
+                <input
+                  type="hidden"
+                  name="_id"
+                  [(ngModel)]="patient._id"
+                >
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="name"
+                  >Név <span class="validation-danger">*</span></label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    [(ngModel)]="patient.name"
+                    pattern="^([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,}) ([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,})$"
+                    required
+                    autofocus
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="patientForm.controls['name']?.valid">
+                  Vezeték- és keresztnév szóközzel elválasztva, mindkettő nagybetűvel kezdődik. Betűkön kívül más karakter nem megengedett. Kötelező kitölteni.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="taj"
+                  >TAJ <span class="validation-danger">*</span></label>
+                  <input
+                    id="taj"
+                    class="form-control"
+                    type="number"
+                    name="taj"
+                    [(ngModel)]="patient.taj"
+                    pattern="^([1-9]{1,1}[0-9]{8,8})$"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="patientForm.controls['taj']?.valid">
+                  A TAJ kilenc számjegyből áll, az első szám nem lehet nulla. A TAJ kitöltése kötelező.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="birth_date"
+                  >Születési idő <span class="validation-danger">*</span></label>
+                  <input
+                    id="birth_date"
+                    class="form-control"
+                    type="date"
+                    name="birth_date"
+                    [(ngModel)]="patient.birth_date"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="patientForm.controls['birth_date']?.valid">
+                  A születési idő kitöltése kötelező.
+                </div>
+
+                <div class="form-group">
+                  <label
+                    class=""
+                    for="mothers_name"
+                  >Anyja neve <span class="validation-danger">*</span></label>
+                  <input
+                    id="mothers_name"
+                    class="form-control"
+                    type="text"
+                    name="mothers_name"
+                    [(ngModel)]="patient.mothers_name"
+                    pattern="^([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,}) ([A-ZÖÜÓŐÚŰÉÁÍ]{1,1}[a-ű]{1,})$"
+                    required
+                  >
+                </div>
+                <div class="validation validation-danger mb-3" [hidden]="patientForm.controls['mothers_name']?.valid">
+                  Vezeték- és keresztnév szóközzel elválasztva, mindkettő nagybetűvel kezdődik. Betűkön kívül más karakter nem megengedett. Kötelező kitölteni.
+                </div>
+
+                <div class="validation-main"><span class="validation-danger">*</span> Kötelező kitölteni</div>
+                <button
+                  [disabled]="!patientForm.valid"
+                  type="submit"
+                  class="btn btn-success btn-link mr-2"
+                > <i class="material-icons">save</i>
+                  Mentés</button>
+                <button
+                  routerLink="/patient"
+                  class="btn btn-danger btn-link"
+                > <i class="material-icons">not_interested</i>
+                  Mégse</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

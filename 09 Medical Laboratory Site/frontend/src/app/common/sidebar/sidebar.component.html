@@ -1,0 +1,34 @@
+<div
+  class="sidebar"
+  data-color="azure"
+  data-background-color="white"
+  data-image="../../../assets/img/microscope.jpg"
+>
+  <div class="logo">
+    <a
+      class="simple-text logo-normal"
+      routerLink="/"
+    > <i class="fa-solid fa-flask-vial mr-1"></i> Micro-Lab</a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li
+        *ngFor="let item of sidebarMenuItems"
+        class="nav-item"
+      >
+        <a
+          class="nav-link"
+          [routerLink]="item.link"
+          [ngClass]="item.class"
+        >
+          <i
+            *ngIf="item.icon"
+            class="material-icons"
+          >{{item.icon}}</i>
+          <p>{{ item.title }}</p>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>

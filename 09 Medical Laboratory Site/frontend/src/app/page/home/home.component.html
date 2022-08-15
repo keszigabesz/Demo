@@ -1,0 +1,67 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <app-header
+        [title]="title"
+        [text]="text"
+      ></app-header>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title">Hozzánk érkező betegek</h4>
+            </div>
+            <div class="card-body">
+              <p>Az ország minden részéből érkeznek hozzánk betegek, eddig összesen <strong>{{patientCount$ | async }}</strong>
+                beteg
+                mintáján végeztünk vizsgálatokat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title">Feldolgozott minták</h4>
+            </div>
+            <div class="card-body">
+              <p>Napont rengeteg vizsgálati anyag érkezik mhozzánk, eddig <strong>{{sampleCount$ | async }}</strong> vizsgálati
+                anyagot
+                dolgoztunk fel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title">Beküldő orvosaink</h4>
+            </div>
+            <div class="card-body">
+              <p>Az ország <strong>{{cityCount$ | async}}</strong> településéről <strong>{{physicianCount$ | async }}</strong> orvos küldi hozzánk a mintákat
+                vizsgálatra.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title">A laboratóriumunkban elérhető vizsgálatok</h4>
+            </div>
+            <div class="card-body">
+              <p>Jelenleg laboratóriumunkban <strong>{{testCount$ | async}}</strong> különféle vizsgálatot tudunk elvégezni.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

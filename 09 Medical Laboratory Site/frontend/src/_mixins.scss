@@ -1,0 +1,29 @@
+@use './colors';
+
+@mixin social-icon ($background-color) {
+  color: colors.$main-white;
+  background-color: $background-color;
+}
+
+@mixin transform-rotate ($deg) {
+  transform: rotate($deg);
+
+}
+
+@mixin before-animation ($sec) {
+  &::before {
+    animation: 0.8s linear $sec normal none infinite running load;
+    background: colors.$main none repeat scroll 0 0;
+  }
+}
+
+@mixin loader-style ($bottom, $height, $left, $margin, $position, $right, $top, $width) {
+  bottom: $bottom;
+  height: $height;
+  left: $left;
+  margin: $margin;
+  position: $position;
+  right: $right;
+  top: $top;
+  width: $width;
+}

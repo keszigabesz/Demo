@@ -1,0 +1,30 @@
+<app-sidebar [sidebarMenuItems]="sidebarMenuItems"></app-sidebar>
+
+<div class="main-panel">
+
+  <app-navigation></app-navigation>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card px-3">
+            <div class="card-header card-header-info">
+              <h4 class="card-title mt-0">Minták</h4>
+            </div>
+            <ng-data-table
+              *ngIf="list$ | async as list"
+              [columns]="columns"
+              [list]="list"
+              [editor]="editor"
+              (deleteItem)="onDeleteOne($event)"
+            ></ng-data-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<app-loader [objectToLoad]="list$ | async"></app-loader>
