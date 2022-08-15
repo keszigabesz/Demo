@@ -19,3 +19,9 @@ Find index.html in the dist folder
 ## **Bootstrap Site Building**
 *Bootstrap 4*  
 Same site, this time with Bootstrap 4, instead of SCSS
+## **Bookstore**
+*Angular project*   
+To run the application:    
+1. Install dependencies (npm i)
+2. Run: json-server --watch backend\data.json
+3. Run in another command line: ng serve
