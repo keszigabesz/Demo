@@ -52,4 +52,4 @@ A swagger documentation can be found at: https://localhost:3000/api-docs
 
 ---
 ## *User Story*
-A User Story can be found at: https://github.com/keszigabesz/vizsgaremek/blob/main/README.md
+A User Story can be found at: [https://github.com/keszigabesz/vizsgaremek/blob/main/README.md](https://github.com/keszigabesz/Demo/blob/main/09%20Medical%20Laboratory%20Site/README.md)
