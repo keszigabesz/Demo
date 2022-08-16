@@ -37,5 +37,5 @@ To run the application:
 3. Open http://localhost:4200/
 ## **Medical laboratory Site**
 *Fullstac API project*  
-Backend: Express application and jest tests, frontend: angular project.  
+Backend: Express application with Mongo DB Atlas Database and jest tests with separete Atlas database, frontend: angular project.  
 Find full installation guide in the [Documentation.md](https://github.com/keszigabesz/Demo/blob/main/09%20Medical%20Laboratory%20Site/DOCUMENTATION.md) file.
