@@ -17,7 +17,7 @@ To run the application:
 3. Find index.html in the frontend folder and open it with Live Server in VSC
 ##  **SCSS Site Building**
 *SCSS*   
-Find index.html in the dist folder
+Find and open index.html in the dist folder
 ## **Bootstrap Site Building**
 *Bootstrap 4*  
 Same site, this time with Bootstrap 4, instead of SCSS
