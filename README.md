@@ -20,7 +20,8 @@ To run the application:
 Find and open index.html in the dist folder
 ## **Bootstrap Site Building**
 *Bootstrap 4*  
-Same site, this time with Bootstrap 4, instead of SCSS
+Same site, this time with Bootstrap 4, instead of SCSS  
+Open index.html
 ## **Bookstore**
 *Angular project*   
 To run the application:    
