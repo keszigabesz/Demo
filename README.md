@@ -27,12 +27,12 @@ Open index.html
 To run the application:    
 1. Install dependencies (`npm i`)
 2. Run: `json-server --watch backend\data.json`
-3. Run in another command line: `ng serve -o`
+3. Run in another command line: `ng serve`
 ## **Admin Site**
 *Angular project*  
 To run the application:    
 1. Install dependencies (`npm i`)
-2. Run: `ng serve -o`
+2. Run: `ng serve`
 ## **Medical laboratory Site**
 *Fullstac API project*  
 Backend: Express application and jest tests, frontend: angular project.  
